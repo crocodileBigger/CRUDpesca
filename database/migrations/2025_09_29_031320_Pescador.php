@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pescador', function (Blueprint $table) {
+        Schema::create('Pescador', function (Blueprint $table) {
             $table->id();          // Cria coluna 'id' auto-increment
             $table->string('name');
             $table->string('identidade')->unique();
             $table->boolean('ativo')->default(true);
-            $table->foreignId('peixe_id')->constrained('peixe')->onDelete('cascade');
+            $table->foreignId('Peixe_id')->constrained('Peixe')->onDelete('cascade');
             $table->timestamps();  // Cria 'created_at' e 'updated_at'
         });
     }
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pescador');
+        Schema::dropIfExists('Pescador');
     }
 };

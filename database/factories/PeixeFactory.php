@@ -17,7 +17,10 @@ class PeixeFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'especie' => $this->faker->name(),
+            'lugar' => $this->faker->unique()->numerify('ID####'),
+            'tamanho' => $this->faker->randomFloat(2, 0, 100),
+            'peso' => $this->faker->randomNumber(2, false),
         ];
     }
 }
