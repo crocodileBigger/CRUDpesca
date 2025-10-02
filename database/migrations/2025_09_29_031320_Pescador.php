@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('identidade')->unique();
             $table->boolean('ativo')->default(true);
-            $table->foreignId('Peixe_id')->constrained('Peixe')->onDelete('cascade');
             $table->timestamps();  // Cria 'created_at' e 'updated_at'
         });
     }

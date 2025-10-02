@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('lugar');
             $table->float('tamanho');
             $table->integer('peso');
+            $table->foreignId('Pescador_id')->constrained('Pescador')->onDelete('cascade');
             $table->timestamps();  // Cria 'created_at' e 'updated_at'
         });
     }

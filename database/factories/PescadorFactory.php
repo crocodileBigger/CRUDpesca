@@ -14,7 +14,6 @@ class PescadorFactory extends Factory
             'name' => $this->faker->name(),
             'identidade' => $this->faker->unique()->numerify('ID####'),
             'ativo' => $this->faker->boolean(80), // 80% chance de true
-            'peixe_id' => \App\Models\Peixe::factory(), // cria um peixe fake também
         ];
     }
 }
