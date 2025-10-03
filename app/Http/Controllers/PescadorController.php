@@ -36,6 +36,24 @@ class PescadorController extends Controller
             'ativo'      => 'boolean'
         ]);
 
-        return (new Pescador())->adicionarPescador($request);
+        return (new Pescador())->adicionarPescadorNoBanco($request);
+    }
+
+    //atualizar um pescador no banco
+    public function atualizarPescador($id, $request)
+    {
+        $request->validate([
+            'name'       => 'required|string|max:255',
+            'identidade' => 'required|string|unique:pescadors,identidade',
+            'ativo'      => 'boolean'
+        ]);
+
+        return (new Pescador()->atualizarPeixeNoBanco($id, $request));
+    }
+
+    //deletar pescador do banco
+    public function pescadorDeletarPorId($id)
+    {
+        return (new Pescador()->deletarPescador($id));
     }
 }

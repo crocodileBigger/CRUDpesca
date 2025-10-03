@@ -34,7 +34,8 @@ class Pescador extends Model
             ->get();
     }
 
-    public function adicionarPescador($request)
+    //adicionar pescador no banco
+    public function adicionarPescadorNoBanco($request)
     {
         $pescador = Pescador::create([
             'name'       => $request->input('name'),
@@ -43,5 +44,46 @@ class Pescador extends Model
         ]);
 
         return response()->json($pescador, 201);
+    }
+
+    //Atualizar um peixe
+    public function atualizarPeixeNoBanco($id, $request)
+    {
+        $pescador = Pescador::find($id);
+
+        if ($pescador) {
+            $pescador->update([
+                'name'       => $request->input('name', $pescador->name),
+                'identidade' => $request->input('identidade', $pescador->identidade),
+                'ativo'      => $request->input('ativo', $pescador->ativo),
+            ]);
+
+            return response()->json([
+                'mensagem'   => 'Pescador atualizado com sucesso.',
+                'pescador'   => $pescador
+            ], 200);
+        } else {
+            return response()->json([
+                'mensagem' => 'Pescador não encontrado.'
+            ], 404);
+        }
+    }
+
+    public function deletarPescador($id)
+    {
+        // Procura o peixe pelo ID
+        $pescador = Pescador::find($id);
+
+        // Verifica se o peixe existe
+        if ($pescador) {
+            $pescador->delete(); // deleta o registro
+            return response()->json([
+                'mensagem' => 'pescador deletado com sucesso.'
+            ], 200);
+        } else {
+            return response()->json([
+                'mensagem' => 'Pescador não encontrado.'
+            ], 404);
+        }
     }
 }

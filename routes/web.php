@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PeixeController;
 use App\Http\Controllers\PescadorController;
-use App\Models\Pescador;
 
 Route::get('/', function () {
     return view('welcome');
@@ -14,15 +13,21 @@ Route::get('/', function () {
 Route::get('/todosPeixes', [PeixeController::class, 'todosPeixes']);
 Route::get('/lugares/{lugar}', [PeixeController::class, 'lugaresOndeTemPeixe']);
 Route::get('/todosLugares', [PeixeController::class, 'lugares']);
-
-//rotas do peixe/get
+//rotas de adicionar um peixe
 Route::post('/peixeAdicionar', [PescadorController::class, 'adicionarPeixe']);
+//deletar peixe
+Route::delete('/deletarPorIdPeixe/{id}', [PeixeController::class, 'peixeDeletarPorId']);
+//atualizar peixe
+Route::put('/peixe/{id}', [PescadorController::class, 'atualizarPescador']);
+
 
 //rotas do pescador/get
 Route::get('/pescadorPeixes/{id}', [PescadorController::class, 'pescadorPeixes']);
 Route::get('/pescador/{id}', [PescadorController::class, 'idDoPescador']);
 Route::get('/pescadorHistoria/{num}', [PescadorController::class, 'pescadorAtivoOuDesativado']);
-
-
-//rotas do pescador/get
+//rotas de adicionar um pescador
 Route::post('/pescadorAdicionar', [PescadorController::class, 'adicionarPescador']);
+//deletar pescador
+Route::delete('/deletarPorIdPescador/[{id}', [PescadorController::class, 'pescadorDeletarPorId']);
+//atualizar peixe
+Route::put('/pescador/{id}', [PescadorController::class, 'atualizarPeixe']);

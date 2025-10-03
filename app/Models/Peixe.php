@@ -37,11 +37,9 @@ class Peixe extends Model
     }
 
     //adicionar peixe
-
     public function adicionarPeixeNoBanco($request)
     {
-        // Cria o registro no banco
-        $peixe = \App\Models\Peixe::create([
+        $peixe = Peixe::create([
             'especie'     => $request->input('especie'),
             'lugar'       => $request->input('lugar'),
             'tamanho'     => $request->input('tamanho'),
@@ -49,7 +47,48 @@ class Peixe extends Model
             'Pescador_id' => $request->input('Pescador_id')
         ]);
 
-        // Retorna como JSON
         return response()->json($peixe, 201);
+    }
+
+    //Atualizar um peixe
+    public function atualizarPeixeNoBanco($id, $request)
+    {
+        $peixe = Peixe::find($id);
+
+        if ($peixe) {
+            $peixe->update([
+                'especie'     => $request->input('especie', $peixe->especie),
+                'lugar'       => $request->input('lugar', $peixe->lugar),
+                'tamanho'     => $request->input('tamanho', $peixe->tamanho),
+                'peso'        => $request->input('peso', $peixe->peso),
+                'Pescador_id' => $request->input('Pescador_id', $peixe->Pescador_id)
+            ]);
+
+            return response()->json([
+                'mensagem' => 'Peixe atualizado com sucesso.',
+                'peixe' => $peixe
+            ], 200);
+        } else {
+            return response()->json([
+                'mensagem' => 'Peixe não encontrado.'
+            ], 404);
+        }
+    }
+
+    //deletar um peixe do banco de dados
+    public function deletarPeixe($id)
+    {
+        $peixe = Peixe::find($id);
+
+        if ($peixe) {
+            $peixe->delete();
+            return response()->json([
+                'mensagem' => 'Peixe deletado com sucesso.'
+            ], 200);
+        } else {
+            return response()->json([
+                'mensagem' => 'Peixe não encontrado.'
+            ], 404);
+        }
     }
 }

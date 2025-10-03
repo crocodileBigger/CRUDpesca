@@ -46,4 +46,24 @@ class PeixeController extends Controller
 
         return (new Peixe()->adicionarPeixeNoBanco($request));
     }
+
+    // Atualizar um peixe
+    public function atualizarPeixe($id, $request)
+    {
+        $request->validate([
+            'especie'      => 'required|string|max:255',
+            'lugar'        => 'required|string|max:255',
+            'tamanho'      => 'required|numeric|min:0',
+            'peso'         => 'required|integer|min:0',
+            'Pescador_id'  => 'required|exists:pescadors,id' // precisa existir o pescador
+        ]);
+
+        return (new Peixe()->atualizarPeixeNoBanco($id, $request));
+    }
+
+    //deletar pescador do banco
+    public function peixeDeletarPorId($id)
+    {
+        return (new Peixe()->deletarPeixe($id));
+    }
 }
