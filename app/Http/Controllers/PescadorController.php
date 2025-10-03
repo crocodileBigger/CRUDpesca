@@ -44,7 +44,7 @@ class PescadorController extends Controller
     {
         $request->validate([
             'name'       => 'required|string|max:255',
-            'identidade' => 'required|string|unique:pescadors,identidade',
+            'identidade' => 'required|string|unique:pescadors,identidade,' . $id,
             'ativo'      => 'boolean'
         ]);
 

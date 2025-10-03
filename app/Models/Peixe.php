@@ -9,6 +9,7 @@ class Peixe extends Model
 {
     use HasFactory;
     protected $table = 'Peixe';
+    protected $fillable = ['especie', 'lugar', 'tamanho', 'peso', 'Pescador_id'];
 
     //pega todos os peixes do evento
     public function especieObitidas()

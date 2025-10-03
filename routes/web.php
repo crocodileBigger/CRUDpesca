@@ -4,11 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PeixeController;
 use App\Http\Controllers\PescadorController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
 //rotas do peixe/get
 Route::get('/todosPeixes', [PeixeController::class, 'todosPeixes']);
 Route::get('/lugares/{lugar}', [PeixeController::class, 'lugaresOndeTemPeixe']);
