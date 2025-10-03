@@ -40,7 +40,7 @@ class PescadorController extends Controller
     }
 
     //atualizar um pescador no banco
-    public function atualizarPescador($id, $request)
+    public function atualizarPescador($id, Request $request)
     {
         $request->validate([
             'name'       => 'required|string|max:255',

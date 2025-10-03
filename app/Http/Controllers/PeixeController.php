@@ -25,13 +25,6 @@ class PeixeController extends Controller
         return (new Peixe())->todosLugares();
     }
 
-    //listar todos os peixes de um pescador em base do seu id
-    public function pescadorPeixes($id)
-    {
-        return (new Peixe()->todosPeixesDePescador($id));
-    }
-
-
 
     public function adicionarPeixe(Request $request)
     {
@@ -48,7 +41,7 @@ class PeixeController extends Controller
     }
 
     // Atualizar um peixe
-    public function atualizarPeixe($id, $request)
+    public function atualizarPeixe($id, Request $request)
     {
         $request->validate([
             'especie'      => 'required|string|max:255',
