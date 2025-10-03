@@ -9,11 +9,12 @@ class Pescador extends Model
 {
     use HasFactory;
     protected $table = 'Pescador';
+    protected $fillable = ['name', 'identidade', 'ativo'];
 
     //pega todos os pescadores do evento que estão participando
-    public function pescadoresAtivosId()
+    public function pescadoresAtivosOuDesativados($num)
     {
-        return Pescador::where('ativo', 1)->get();
+        return Pescador::where('ativo', $num)->get();
     }
 
     //pega todos os pescadores que estão participando e que nao estao participando
@@ -25,5 +26,22 @@ class Pescador extends Model
     public function peixePegos($nomePescador)
     {
         return Peixe::where('Pescador', $nomePescador)->get();
+    }
+
+    public function pegaUnicoPescador($id)
+    {
+        return Pescador::where('id', $id)
+            ->get();
+    }
+
+    public function adicionarPescador($request)
+    {
+        $pescador = Pescador::create([
+            'name'       => $request->input('name'),
+            'identidade' => $request->input('identidade'),
+            'ativo'      => $request->input('ativo', true) // default true
+        ]);
+
+        return response()->json($pescador, 201);
     }
 }

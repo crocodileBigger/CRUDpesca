@@ -30,4 +30,20 @@ class PeixeController extends Controller
     {
         return (new Peixe()->todosPeixesDePescador($id));
     }
+
+
+
+    public function adicionarPeixe(Request $request)
+    {
+        // Validação básica
+        $request->validate([
+            'especie'      => 'required|string|max:255',
+            'lugar'        => 'required|string|max:255',
+            'tamanho'      => 'required|numeric|min:0',
+            'peso'         => 'required|integer|min:0',
+            'Pescador_id'  => 'required|exists:pescadors,id' // precisa existir o pescador
+        ]);
+
+        return (new Peixe()->adicionarPeixeNoBanco($request));
+    }
 }

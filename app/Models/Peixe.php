@@ -35,4 +35,21 @@ class Peixe extends Model
         return Peixe::where('Pescador_id', $id)
             ->get();
     }
+
+    //adicionar peixe
+
+    public function adicionarPeixeNoBanco($request)
+    {
+        // Cria o registro no banco
+        $peixe = \App\Models\Peixe::create([
+            'especie'     => $request->input('especie'),
+            'lugar'       => $request->input('lugar'),
+            'tamanho'     => $request->input('tamanho'),
+            'peso'        => $request->input('peso'),
+            'Pescador_id' => $request->input('Pescador_id')
+        ]);
+
+        // Retorna como JSON
+        return response()->json($peixe, 201);
+    }
 }
