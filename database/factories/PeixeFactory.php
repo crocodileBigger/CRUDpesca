@@ -68,7 +68,7 @@ class PeixeFactory extends Factory
             'lugar'   => $lugar,
             'tamanho' => $this->faker->randomFloat(2, 0, 100),
             'peso'    => $this->faker->randomFloat(2, 0.1, 50.0),
-            'Pescador_nome' => \App\Models\Pescador::factory(), // cria um peixe fake também
+            'Pescador_id' => \App\Models\Pescador::factory(), // cria um peixe fake também
         ];
     }
 }

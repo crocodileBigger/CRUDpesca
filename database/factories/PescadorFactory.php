@@ -13,7 +13,7 @@ class PescadorFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'identidade' => $this->faker->unique()->numerify('ID####'),
-            'ativo' => $this->faker->boolean(80), // 80% chance de true
+            'ativo' => $this->faker->boolean(50), // 80% chance de true
         ];
     }
 }

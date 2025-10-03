@@ -16,14 +16,23 @@ class Peixe extends Model
         return Peixe::all();
     }
 
-    //lista de lugares onde teve os peixes obitidos
-    public function lugarePeixesObitidos($lugares)
+    //lista de lugares onde teve os peixes obitidos em base do lugar
+    public function lugarePeixesObitidos($lugar)
     {
-        return Peixe::where('lugar', $lugares)->get();
+        return Peixe::where('lugar', $lugar)
+            ->get();
     }
+
     //lista de todos os lugares
     public function todosLugares()
     {
-        return Peixe::pluck('lugar');
+        return Peixe::distinct()->pluck('lugar');
+    }
+
+    //listar todos os peixes de um pescador em base do seu id
+    public function todosPeixesDePescador($id)
+    {
+        return Peixe::where('Pescador_id', $id)
+            ->get();
     }
 }
